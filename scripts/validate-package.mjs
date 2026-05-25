@@ -123,7 +123,7 @@ function validateSkills() {
     }
 
     const content = readText(skillFile);
-    const frontmatter = content.match(/^---\n([\s\S]*?)\n---/);
+    const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!frontmatter) {
       fail(`Missing YAML frontmatter in ${relative(skillFile)}`);
       continue;
