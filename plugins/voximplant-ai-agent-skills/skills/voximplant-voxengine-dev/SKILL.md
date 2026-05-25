@@ -9,14 +9,12 @@ description: Write, review, and debug VoxEngine scenario code for Voximplant cal
 
 Your VoxEngine knowledge may be stale. Before writing or editing scenario code, verify platform APIs against the freshest available source.
 
-1. Prefer the Voximplant Fern MCP server when available.
-   - Use `searchDocs` from `https://docs.voximplant.ai/_mcp/server`.
-   - Search for the exact feature, namespace, class, method, event, and event payload you plan to use.
-2. If MCP is unavailable, use the documentation index and page Markdown:
+1. Use the Voximplant documentation index and focused page Markdown:
    - `https://docs.voximplant.ai/llms.txt`
    - `https://docs.voximplant.ai/platform/voxengine/llms.txt`
    - `https://docs.voximplant.ai/api-reference/voxengine` for VoxEngine API methods
    - append `.md` to relevant page URLs
+2. Search for the exact feature, namespace, class, method, event, and event payload you plan to use before writing code.
 3. Validate method signatures against the API Reference or local `voxengine.d.ts`.
    - Type declarations URL: `https://cdn.voximplant.com/voxengine_typings/voxengine.d.ts`
    - Treat the URL as a downloadable file, not a documentation page. Save it locally, for example to `typings/voxengine.d.ts`, before using it for TypeScript/IDE validation.
@@ -38,7 +36,7 @@ Before code generation:
 4. Write code only after the API surface is confirmed.
 5. If a method cannot be verified, say so and propose a documented alternative.
 
-Use the smallest useful documentation source. Prefer MCP search or one relevant `.md` page over loading `llms-full.txt`.
+Use the smallest useful documentation source. Prefer one relevant `.md` page or section-level `llms.txt` over loading `llms-full.txt`.
 
 ## Skill Composition
 

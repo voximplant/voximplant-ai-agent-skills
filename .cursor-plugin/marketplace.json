@@ -1,0 +1,20 @@
+{
+  "name": "voximplant",
+  "owner": {
+    "name": "Voximplant"
+  },
+  "metadata": {
+    "description": "Voximplant AI Agent Skills for Cursor, Claude Code, and Codex.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "voximplant-ai-agent-skills",
+      "source": "./plugins/voximplant-ai-agent-skills",
+      "description": "Voximplant Voice AI development skills for VoxEngine scenarios and Management API automation.",
+      "version": "0.1.0",
+      "category": "Developer Tools",
+      "tags": ["voximplant", "voice-ai", "voxengine", "agent-skills"]
+    }
+  ]
+}

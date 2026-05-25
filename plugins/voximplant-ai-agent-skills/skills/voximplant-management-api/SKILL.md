@@ -10,20 +10,20 @@ description: Automate Voximplant account setup and operations through the Manage
 Use this skill for platform automation, not for writing scenario logic. For VoxEngine scenario code, use `voximplant-voxengine-dev`.
 Many real tasks require both skills: this skill retrieves platform state, call history, logs, recordings, and manages resources/secrets; `voximplant-voxengine-dev` analyzes and fixes scenario code.
 
-1. Prefer the Voximplant Fern MCP server when available.
-   - Use `searchDocs` from `https://docs.voximplant.ai/_mcp/server`.
-   - Search for the exact Management API method, API client, or VoxEngine CI command before using it.
-2. If MCP is unavailable, use:
+1. Use the Voximplant documentation index and focused page Markdown:
    - `https://docs.voximplant.ai/llms.txt`
    - `https://docs.voximplant.ai/platform/management-api/llms.txt`
    - page Markdown URLs such as `https://docs.voximplant.ai/platform/management-api/authorization.md`
+2. Search for the exact Management API method, API client, or VoxEngine CI command before using it.
 3. Use service accounts for automation.
    - Never ask for the user's main Voximplant account password.
    - Prefer service account JSON credentials and JWT authorization.
+   - Treat service account JSON files as path-only secrets by default. Do not read the JSON private key into the agent conversation context unless the user explicitly asks and understands the risk.
    - API keys are legacy for secure flows; use them only when the user explicitly needs a legacy integration.
 4. Choose service account roles based on the user's priority.
    - For the easiest beginner workflow, suggest a broad role such as Developer or Owner so the agent can complete setup without repeated role changes.
    - If security is more important and the user understands the exact task, explain the minimum roles needed before performing account-changing operations.
+   - SMS operations such as `A2PSendSms` and `A2PGetSmsHistory` may require SMS-specific permissions beyond a general Developer role.
 5. Confirm write operations.
    - Before creating, updating, deleting, uploading, buying, binding, or starting resources, restate the target account/application/resource and wait for explicit user confirmation unless the user already gave clear approval.
 6. Prefer Management API-first automation.
@@ -32,6 +32,10 @@ Many real tasks require both skills: this skill retrieves platform state, call h
 7. Dry-run or preview before deploy when possible.
    - For VoxEngine CI uploads, run or recommend `--dry-run` before uploading.
    - For Management API changes, present the exact resources and fields that will change.
+8. Be careful with scenario and rule updates.
+   - If you are updating scenario code, update the existing scenario in place with `SetScenarioInfo`.
+   - If you are changing which scenario a rule points to, use the documented binding primitive such as `BindScenario`, then verify the binding.
+   - Do not assume `SetRuleInfo` can rebind a rule to a scenario. It may accept `scenario_id` and return success without changing the binding.
 
 ## First Response Workflow
 
@@ -73,6 +77,8 @@ Then tell the user:
 6. Put the JSON file in the project root and tell the agent the filename, for example `voximplant-service-account.json`. If the file keeps its default `_private.json` suffix, the agent should be able to find it by name. Do not commit it.
 
 Prefer the simple root-file handoff for beginners. The agent must proactively check or update `.gitignore` so the JSON is not committed; create `.gitignore` if needed. Do not ask the user to paste their main account password, browser cookies, or control panel session tokens.
+
+Do not read the service account JSON contents into chat by default. Pass only the file path to local commands or scripts. Reading the JSON into the agent conversation may send the private key through the LLM provider and store it in conversation logs.
 
 If the user already works with environment variables or CI secrets, adapt to that setup. Do not make a beginner manually edit paths in `.env`; the root JSON filename is the simplest default.
 

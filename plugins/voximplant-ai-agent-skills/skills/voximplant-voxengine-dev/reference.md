@@ -4,13 +4,13 @@ Use this file when the main skill needs more detail for scenario authoring, revi
 
 ## Source Priority
 
-1. Voximplant Fern MCP `searchDocs`
-2. VoxEngine API Reference in `docs.voximplant.ai`
-3. local `voxengine.d.ts` downloaded from `https://cdn.voximplant.com/voxengine_typings/voxengine.d.ts`
-4. Focused `.md` pages from `docs.voximplant.ai`
+1. VoxEngine API Reference in `docs.voximplant.ai`
+2. local `voxengine.d.ts` downloaded from `https://cdn.voximplant.com/voxengine_typings/voxengine.d.ts`
+3. Focused `.md` pages from `docs.voximplant.ai`
+4. Section-level `llms.txt` indexes
 5. `llms-full.txt` only when narrow sources are insufficient
 
-Use `https://docs.voximplant.ai/api-reference/voxengine` as the direct API Reference entry point for VoxEngine methods when MCP search is unavailable or insufficient.
+Use `https://docs.voximplant.ai/api-reference/voxengine` as the direct API Reference entry point for VoxEngine methods.
 
 If sources disagree, prefer the newest API Reference or type declaration for signatures, and the newest guide for recommended architecture.
 

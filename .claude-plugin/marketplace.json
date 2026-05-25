@@ -1,0 +1,27 @@
+{
+  "name": "voximplant",
+  "displayName": "Voximplant Plugins",
+  "owner": {
+    "name": "Voximplant"
+  },
+  "description": "Voximplant AI Agent Skills for Claude Code and other Agent Skills clients.",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "voximplant-ai-agent-skills",
+      "source": "./plugins/voximplant-ai-agent-skills",
+      "displayName": "Voximplant AI Agent Skills",
+      "description": "Voximplant Voice AI development skills for VoxEngine scenarios and Management API automation.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Voximplant",
+        "url": "https://voximplant.com"
+      },
+      "homepage": "https://docs.voximplant.ai",
+      "repository": "https://github.com/voximplant/voximplant-ai-agent-skills",
+      "license": "Apache-2.0",
+      "category": "Developer Tools",
+      "tags": ["voximplant", "voice-ai", "voxengine", "agent-skills"]
+    }
+  ]
+}

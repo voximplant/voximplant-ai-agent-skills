@@ -1,0 +1,30 @@
+{
+  "name": "voximplant-ai-agent-skills",
+  "version": "0.1.0",
+  "description": "Voximplant Voice AI development skills for VoxEngine scenarios and Management API automation.",
+  "author": {
+    "name": "Voximplant",
+    "url": "https://voximplant.com"
+  },
+  "homepage": "https://docs.voximplant.ai",
+  "repository": "https://github.com/voximplant/voximplant-ai-agent-skills",
+  "license": "Apache-2.0",
+  "keywords": ["voximplant", "voxengine", "voice-ai", "management-api", "agent-skills"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Voximplant AI Agent Skills",
+    "shortDescription": "Voximplant Voice AI skills for agents.",
+    "longDescription": "Agent skills for writing VoxEngine scenarios, managing Voximplant platform resources, deploying call flows, testing with softphones, and debugging real calls from platform evidence.",
+    "developerName": "Voximplant",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://docs.voximplant.ai",
+    "defaultPrompt": [
+      "Use Voximplant AI Agent Skills to build an inbound Voice AI scenario.",
+      "Use Voximplant AI Agent Skills to deploy and test this VoxEngine scenario."
+    ],
+    "brandColor": "#662D91",
+    "composerIcon": "./assets/voximplant-logo.png",
+    "logo": "./assets/voximplant-logo.png"
+  }
+}

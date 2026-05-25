@@ -4,9 +4,9 @@ Use this file when the main skill needs more detail for Voximplant account autom
 
 ## Source Priority
 
-1. Voximplant Fern MCP `searchDocs`
-2. Management API Reference in `docs.voximplant.ai`
-3. Management API pages under `https://docs.voximplant.ai/platform/management-api/`
+1. Management API Reference in `docs.voximplant.ai`
+2. Management API pages under `https://docs.voximplant.ai/platform/management-api/`
+3. Section-level `llms.txt` indexes
 4. Official API client README files
 5. VoxEngine CI documentation when CI is the selected deployment path
 
@@ -27,6 +27,7 @@ Prefer:
 
 - local secret files excluded from version control
 - a service account JSON file in the project root, with the filename sent in chat
+- path-only handling for service account JSON files: pass the filename or path to local commands and scripts instead of reading the private key into the agent conversation
 - automatic filename discovery for root-level `*_private.json` files
 - environment variables or CI secret stores when the user already uses them
 - broad service account roles such as Developer or Owner for the simplest beginner workflow
@@ -37,6 +38,7 @@ If the user needs Voximplant secrets available to a scenario, uploading or updat
 Avoid:
 
 - committing service account JSON
+- reading service account JSON contents into chat unless the user explicitly asks and understands that the private key may transit the LLM provider and be stored in conversation logs
 - asking the user to hand-edit fragile credential file paths
 - writing secrets to `.env` without explicit approval
 - using a personal account password as automation credentials
@@ -57,6 +59,7 @@ Useful scopes to discuss for the security-focused path:
 - logs/recordings: roles allowed to access secure objects are needed
 - service account management: role-system permissions are needed
 - secret management: roles that can create or update Voximplant secrets are needed
+- SMS sending/history: SMS-specific permissions may be required beyond a general Developer role. If `A2PSendSms` or `A2PGetSmsHistory` returns `code: 100 Authorization failed` while the same JWT works for other methods, check role scope before debugging JWT generation.
 
 If unsure, search the docs for the exact method and required role before advising. Do not block a beginner flow on fine-grained role planning if the user is comfortable granting a broad role.
 
@@ -102,6 +105,15 @@ Use VoxEngine CI only when the user wants project-like local source management:
 
 If both paths fit, recommend Management API first and explain that CI is useful for teams already managing VoxEngine files as a local deployable project.
 
+## Scenario And Rule Updates
+
+Keep scenario code updates separate from rule-to-scenario binding changes.
+
+- If you are updating scenario code, update the existing scenario in place with `SetScenarioInfo`.
+- If you are changing which scenario a rule points to, use the documented binding primitive such as `BindScenario`, then verify the resulting rule/scenario association.
+- Do not rely on `SetRuleInfo` to rebind a rule by passing `scenario_id`. It may accept the field and return `result: 1` without actually changing the bound scenario.
+- If an unbind primitive is unavailable or returns an unknown-command response in the target account, prefer updating the existing scenario in place when the user's goal is only to change code.
+
 ## Call Debug Data
 
 When a test call fails, the Management API part of the debug loop should collect platform evidence:
@@ -140,11 +152,15 @@ Before buying or binding numbers:
 
 ## API Reference Discovery
 
-API Reference paths can move as docs evolve. Do not hardcode a guessed endpoint page if MCP is available. Search for the method name, for example:
+API Reference paths can move as docs evolve. Do not hardcode a guessed endpoint page. Search for the method name, for example:
 
 - `AddApplication Management API`
 - `AddScenario Management API`
+- `SetScenarioInfo Management API`
+- `BindScenario Management API`
 - `SetRuleInfo Management API`
+- `A2PSendSms Management API`
+- `A2PGetSmsHistory Management API`
 - `StartScenarios Management API`
 - `GetCallHistory Management API`
 - `DownloadHistoryReport Management API`
@@ -152,4 +168,4 @@ API Reference paths can move as docs evolve. Do not hardcode a guessed endpoint 
 - `GetCallHistoryAsync Management API`
 - `GetCallSessionHistoryAsync Management API`
 
-If MCP is unavailable, use `https://docs.voximplant.ai/llms.txt` and the Management API section index first.
+Use `https://docs.voximplant.ai/llms.txt` and the Management API section index first.

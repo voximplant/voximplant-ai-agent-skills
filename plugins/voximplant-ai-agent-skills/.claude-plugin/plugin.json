@@ -1,0 +1,15 @@
+{
+  "name": "voximplant-ai-agent-skills",
+  "displayName": "Voximplant AI Agent Skills",
+  "version": "0.1.0",
+  "description": "Voximplant Voice AI development skills for VoxEngine scenarios and Management API automation.",
+  "author": {
+    "name": "Voximplant",
+    "url": "https://voximplant.com"
+  },
+  "homepage": "https://docs.voximplant.ai",
+  "repository": "https://github.com/voximplant/voximplant-ai-agent-skills",
+  "license": "Apache-2.0",
+  "keywords": ["voximplant", "voxengine", "voice-ai", "management-api", "agent-skills"],
+  "skills": "./skills/"
+}

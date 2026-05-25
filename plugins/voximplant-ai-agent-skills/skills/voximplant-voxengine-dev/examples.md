@@ -127,9 +127,9 @@ typings/voxengine.d.ts
 Use it for local type checking and autocomplete. Do not upload TypeScript directly to VoxEngine without transpiling to JavaScript.
 ```
 
-## Minimal Documentation Query Examples
+## Minimal Documentation Lookup Examples
 
-Good MCP queries:
+Good documentation searches:
 
 - `VoxEngine inbound call OpenAI Realtime example`
 - `VoxEngine CallAlerting event payload`
